@@ -1,0 +1,80 @@
+{
+  "name": "liveavatar-agentforce-app",
+  "description": "Voice-enabled AI avatar powered by HeyGen LiveAvatar and Salesforce Agentforce",
+  "keywords": ["next.js", "heygen", "liveavatar", "salesforce", "agentforce", "voice"],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "LIVEAVATAR_API_KEY": {
+      "description": "API key from liveavatar.com",
+      "required": true
+    },
+    "LIVEAVATAR_AVATAR_ID": {
+      "description": "Avatar ID to use from LiveAvatar dashboard",
+      "required": true
+    },
+    "LIVEAVATAR_VOICE_ID": {
+      "description": "Voice ID for the avatar from LiveAvatar dashboard",
+      "required": true
+    },
+    "LIVEAVATAR_CONTEXT_ID": {
+      "description": "Context ID for FULL mode (defines avatar personality/knowledge)",
+      "required": false
+    },
+    "LIVEAVATAR_MODE": {
+      "description": "Mode: 'full' (HeyGen AI) or 'custom' (external TTS)",
+      "value": "full"
+    },
+    "LIVEAVATAR_LANGUAGE": {
+      "description": "Language code (e.g., 'en', 'fr', 'nl')",
+      "value": "en"
+    },
+    "SF_INSTANCE_URL": {
+      "description": "Salesforce org URL (e.g., https://myorg.my.salesforce.com)",
+      "required": true
+    },
+    "SF_CLIENT_ID": {
+      "description": "Connected App Consumer Key",
+      "required": true
+    },
+    "SF_CLIENT_SECRET": {
+      "description": "Connected App Consumer Secret",
+      "required": true
+    },
+    "SF_AGENT_ID": {
+      "description": "Agentforce Agent ID",
+      "required": true
+    },
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API key (required for CUSTOM mode TTS)",
+      "required": false
+    },
+    "TTS_PROVIDER": {
+      "description": "TTS provider for CUSTOM mode: 'openai' or 'elevenlabs'",
+      "value": "openai"
+    },
+    "ELEVENLABS_API_KEY": {
+      "description": "ElevenLabs API key (if TTS_PROVIDER=elevenlabs)",
+      "required": false
+    },
+    "ELEVENLABS_VOICE_ID": {
+      "description": "ElevenLabs Voice ID (if TTS_PROVIDER=elevenlabs)",
+      "required": false
+    },
+    "ADMIN_PASSWORD": {
+      "description": "Password to access /admin configuration page",
+      "required": false
+    },
+    "HEROKU_API_KEY": {
+      "description": "Heroku Platform API token (for admin config management)",
+      "required": false
+    },
+    "HEROKU_APP_NAME": {
+      "description": "Heroku app name (for admin config management)",
+      "required": false
+    }
+  }
+}
