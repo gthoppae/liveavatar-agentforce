@@ -67,6 +67,19 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setThemeValue(newTheme);
   }, []);
 
+  // Toggle theme with 't' key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 't' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        const tag = (e.target as HTMLElement).tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+        toggleTheme();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [toggleTheme]);
+
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
