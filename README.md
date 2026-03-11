@@ -22,22 +22,41 @@ User speaks → HeyGen STT (Deepgram) → /api/agent (Agentforce) → avatar.spe
 
 ## Prerequisites
 
-- **Node.js 20.x**
+- **Node.js 20+**
 - **HeyGen LiveAvatar account** - [liveavatar.com](https://liveavatar.com) for API key, avatar ID, voice ID
 - **Salesforce org with Agentforce** - Connected App with Client Credentials flow, an Agentforce Agent ID
 - **OpenAI API key** (optional) - only needed for CUSTOM mode TTS
 
 ## Quick Start
 
-### 1. Clone and install
+### Option A: Interactive setup (recommended)
 
 ```bash
-git clone <repo-url>
-cd liveavatar-agentforce-app
+git clone https://github.com/gthoppae/liveavatar-agentforce.git
+cd liveavatar-agentforce
+./setup.sh
+```
+
+The setup script checks prerequisites, installs dependencies, prompts for credentials, and optionally configures a customer demo proxy URL. It offers to start the app via `npm run dev` or Docker when done.
+
+After initial setup, use the quick-start script:
+
+```bash
+./server.sh                         # Start dev server, open browser
+./server.sh kncb.nl '#ff6600' nl    # Start with customer demo proxy
+```
+
+### Option B: Manual setup
+
+#### 1. Clone and install
+
+```bash
+git clone https://github.com/gthoppae/liveavatar-agentforce.git
+cd liveavatar-agentforce
 npm install
 ```
 
-### 2. Configure environment
+#### 2. Configure environment
 
 ```bash
 cp .env.local.example .env.local
@@ -57,7 +76,7 @@ Edit `.env.local` with your credentials. At minimum you need:
 
 See [CONFIGURATION.md](CONFIGURATION.md) for detailed documentation on every variable, how modes work, and example configurations.
 
-### 3. Run
+#### 3. Run
 
 ```bash
 npm run dev

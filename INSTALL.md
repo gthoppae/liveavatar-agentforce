@@ -1,8 +1,29 @@
 # Installation Guide
 
+## Quick Setup
+
+The interactive setup script handles everything below automatically:
+
+```bash
+git clone https://github.com/gthoppae/liveavatar-agentforce.git
+cd liveavatar-agentforce
+./setup.sh
+```
+
+After initial setup, use the quick-start script:
+
+```bash
+./server.sh                         # Start dev server, open browser
+./server.sh kncb.nl '#ff6600' nl    # Start with customer demo proxy
+```
+
+If you prefer manual setup, follow the steps below.
+
+---
+
 ## Prerequisites
 
-- **Node.js 20.x** or later ([download](https://nodejs.org/))
+- **Node.js 20+** ([download](https://nodejs.org/))
 - **HeyGen LiveAvatar account** — [liveavatar.com](https://liveavatar.com)
 - **Salesforce org with Agentforce** — with a Connected App configured for OAuth 2.0 Client Credentials flow
 
