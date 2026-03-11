@@ -12,7 +12,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 // Theme store for useSyncExternalStore
-let currentTheme: Theme = 'dark';
+let currentTheme: Theme = 'light';
 const listeners = new Set<() => void>();
 
 function getSnapshot(): Theme {
@@ -20,7 +20,7 @@ function getSnapshot(): Theme {
 }
 
 function getServerSnapshot(): Theme {
-  return 'dark';
+  return 'light';
 }
 
 function subscribeToTheme(callback: () => void) {
@@ -42,10 +42,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     let initial: Theme;
     if (stored) {
       initial = stored;
-    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-      initial = 'light';
-    } else {
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       initial = 'dark';
+    } else {
+      initial = 'light';
     }
 
     if (initial !== currentTheme) {
