@@ -2,16 +2,16 @@
 set -euo pipefail
 
 # ─────────────────────────────────────────────────────────────────────
-# LiveAvatar + Agentforce — Install & Start Script
+# LiveAvatar + Agentforce — Setup Script
 #
 # Usage:
-#   ./install.sh                          Full install (credentials, deps, start)
+#   ./setup.sh                          Full install (credentials, deps, start)
 #   ./server.sh                           Quick start (see server.sh)
 #   ./server.sh https://kncb.nl           Quick start → proxy demo for customer site
 #
 # Testing:
-#   Source the helpers:  INSTALL_LIB_ONLY=1 source install.sh
-#   Run the test suite:  bash test/test_install.sh
+#   Source the helpers:  INSTALL_LIB_ONLY=1 source setup.sh
+#   Run the test suite:  bash test/test_setup.sh
 # ─────────────────────────────────────────────────────────────────────
 
 # ── Colors ───────────────────────────────────────────────────────────
@@ -173,7 +173,7 @@ if [ ! -t 0 ]; then
   echo "Run it like this instead:"
   echo "  git clone https://github.com/gthoppae/liveavatar-agentforce.git"
   echo "  cd liveavatar-agentforce"
-  echo "  ./install.sh"
+  echo "  ./setup.sh"
   echo ""
   exit 1
 fi
@@ -221,14 +221,14 @@ elif [ -f "package.json" ] && grep -q "liveavatar-agentforce-app" "package.json"
   ok "Already inside liveavatar-app/"
 elif [ -f "$SCRIPT_SOURCE/liveavatar-app/package.json" ] && grep -q "liveavatar-agentforce-app" "$SCRIPT_SOURCE/liveavatar-app/package.json" 2>/dev/null; then
   cd "$SCRIPT_SOURCE/liveavatar-app"
-  ok "Found liveavatar-app/ next to install.sh"
+  ok "Found liveavatar-app/ next to setup.sh"
 else
   info "Cloning repository..."
   if git clone https://github.com/gthoppae/liveavatar-agentforce.git; then
     cd liveavatar-agentforce/liveavatar-app
     ok "Cloned repository"
   else
-    fail "Clone failed. Clone manually and run ./install.sh from the repo root."
+    fail "Clone failed. Clone manually and run ./setup.sh from the repo root."
   fi
 fi
 

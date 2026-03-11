@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────────────
-# Test suite for install.sh helper functions
+# Test suite for setup.sh helper functions
 #
-# Usage: bash test/test_install.sh
+# Usage: bash test/test_setup.sh
 # ─────────────────────────────────────────────────────────────────────
 set -euo pipefail
 
@@ -65,10 +65,10 @@ trap 'rm -rf "$TMPDIR_TEST"' EXIT
 cd "$TMPDIR_TEST"
 
 # Source just the helper functions
-INSTALL_LIB_ONLY=1 source "$REPO_ROOT/install.sh"
+INSTALL_LIB_ONLY=1 source "$REPO_ROOT/setup.sh"
 
 echo ""
-echo "═══ install.sh test suite ═══"
+echo "═══ setup.sh test suite ═══"
 echo ""
 
 # ── Test: mask() ─────────────────────────────────────────────────────
@@ -290,11 +290,11 @@ if [ -f "$SKILL_FILE" ]; then
   done
 fi
 
-# ── Test: install.sh structure ───────────────────────────────────────
+# ── Test: setup.sh structure ───────────────────────────────────────
 echo ""
-echo "install.sh validation:"
+echo "setup.sh validation:"
 
-INSTALL_FILE="$REPO_ROOT/install.sh"
+INSTALL_FILE="$REPO_ROOT/setup.sh"
 assert_file_contains "has shebang" "#!/usr/bin/env bash" "$INSTALL_FILE"
 assert_file_contains "has set -euo pipefail" "set -euo pipefail" "$INSTALL_FILE"
 assert_file_contains "has TTY guard" '[ ! -t 0 ]' "$INSTALL_FILE"
@@ -307,9 +307,9 @@ assert_file_contains "detects Claude Code" 'command -v claude' "$INSTALL_FILE"
 
 ((TESTS_RUN++))
 if [ -x "$INSTALL_FILE" ]; then
-  pass "install.sh is executable"
+  pass "setup.sh is executable"
 else
-  fail_test "install.sh is executable" "missing +x permission"
+  fail_test "setup.sh is executable" "missing +x permission"
 fi
 
 # ── Results ──────────────────────────────────────────────────────────

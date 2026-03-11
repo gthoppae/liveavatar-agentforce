@@ -11,9 +11,9 @@ set -euo pipefail
 #   ./server.sh kncb.nl '#ff6600' nl     Start → proxy demo with color + language
 # ─────────────────────────────────────────────────────────────────────
 
-# Source shared helpers from install.sh
+# Source shared helpers from setup.sh
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
-INSTALL_LIB_ONLY=1 source "$SCRIPT_DIR/install.sh"
+INSTALL_LIB_ONLY=1 source "$SCRIPT_DIR/setup.sh"
 
 # ── Find the app directory ───────────────────────────────────────────
 find_app_dir
@@ -42,7 +42,7 @@ if [ -n "${1:-}" ]; then
   brand_color="${2:-#0077b6}"
   DEMO_URL=$(build_demo_url "$customer_url" "$brand_color" "$lang")
 else
-  # Fall back to saved customer from install.sh
+  # Fall back to saved customer from setup.sh
   saved_url=$(get_env "DEMO_CUSTOMER_URL" 2>/dev/null || true)
   if [ -n "$saved_url" ]; then
     saved_color=$(get_env "DEMO_BRAND_COLOR" 2>/dev/null || echo "#0077b6")
